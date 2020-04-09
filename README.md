@@ -1,5 +1,13 @@
 # WbTest
 
+### Installation
+
+```sh
+$ cd wbTest
+$ npm install
+$ npm run start:mock:server
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
 ## Development server
