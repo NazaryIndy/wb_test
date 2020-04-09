@@ -1,0 +1,11 @@
+<input class="form-control search-box"
+       [(ngModel)]="search"
+       (ngModelChange)="filterGoods(search)">
+
+<ul class="list-group">
+  <li class="list-group-item"
+      *ngFor="let good of goods">
+    <p>Имя: {{ good.name | humanize}}</p>
+    <p>{{ getGoodPrice(good) }}</p>
+  </li>
+</ul>
