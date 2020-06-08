@@ -1,12 +1,11 @@
 
 <a class="btn btn-primary" routerLink="/">Назад</a>
 <input class="form-control search-box"
-       [(ngModel)]="search"
-       (ngModelChange)="filterGoods(search)">
+       [(ngModel)]="search">
 
 <ul class="list-group">
   <li class="list-group-item"
-      *ngFor="let good of goods | async">
+      *ngFor="let good of goods | async | filterOnString: search">
     <p>Имя: {{ good.name | humanize}}</p>
     <p *ngIf="good.canBuy; else notForSale">Цена: {{ good.price | currency}}</p>
     <ng-template #notForSale>

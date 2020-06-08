@@ -1,41 +1,20 @@
-import { Component, OnDestroy } from '@angular/core';
-import { DataService } from '../data.service';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Good } from '../models/good.interface';
-import { Subject } from 'rxjs';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-goods',
   templateUrl: './goods.component.html',
   styleUrls: ['./goods.component.scss']
 })
-export class GoodsComponent implements OnDestroy {
+export class GoodsComponent {
 
   public search: string;
-  public goods: Good[];
-  private defaultGoods: Good[];
-  private unsubscribe: Subject<void> = new Subject<void>();
+  public goods: Observable<Good[]>;
 
   constructor(private goodsService: DataService) {
-    this.getGoods();
-  }
-
-  public ngOnDestroy() {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-  }
-
-  private getGoods(): void {
-    this.goodsService.getData().subscribe(goods => this.goods = this.defaultGoods = goods);
-  }
-
-  public filterGoods(filterString: string): void {
-    if (!filterString) {
-      this.goods = this.defaultGoods;
-      return;
-    }
-    this.goods = this.goods.filter(good => {
-      return good.name.toLocaleLowerCase().includes(filterString.toLocaleLowerCase());
-    });
+    this.goods = this.goodsService.getData();
   }
 
 }

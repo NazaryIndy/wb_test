@@ -12,7 +12,6 @@ import { CoreComponent } from './core.component';
     BrowserModule,
     HttpClientModule,
     CoreRoutingModule,
-
   ],
   providers: []
 })
